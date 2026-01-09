@@ -1,7 +1,9 @@
 ﻿using QuizBattle.Console;
 using QuizBattle.Domain;
 
-var questions = QuestionUtils.SeedQuestions();
+var repo = new InMemoryQuestionRepository();
+var service = new QuestionService(repo);
+var questions = service.GetRandomQuestions();
 
 Console.Title = "QuizBattle – Konsol (v.2 dag 1–2)";
 Console.WriteLine("Välkommen till QuizBattle!");
