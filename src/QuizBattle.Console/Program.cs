@@ -6,7 +6,7 @@ using QuizBattle.Domain;
 const int numberOfQuestions = 3;
 
 var repository = new InMemoryQuestionRepository();
-var service = new QuestionService(repository);
+IQuestionService service = new QuestionService(repository);
 var questions = service.GetRandomQuestions();
 
 Console.Title = "QuizBattle – Konsol (v.2 dag 1–2)";
@@ -23,9 +23,9 @@ var asked = 0;
 foreach (var question in questions.Take(numberOfQuestions))
 {
     asked++;
-    QuestionUtils.DisplayQuestion(question, asked);
+    service.DisplayQuestion(question, asked);
 
-    var pick = QuestionUtils.PromptForAnswer(question);
+    var pick = service.PromptForAnswer(question);
 
     var selectedCode = question.GetChoiceAt(pick - 1).Code;
     var isCorrect = question.IsCorrect(selectedCode);
