@@ -13,12 +13,12 @@ namespace QuizBattle.Application.Services
     {
         private readonly StartSessionHandler _start;
         private readonly AnswerQuestionHandler _answer;
-        private readonly FinishQuizHandler _finish;
+        private readonly FinishSessionHandler _finish;
 
         public SessionService(
             StartSessionHandler start,
             AnswerQuestionHandler answer,
-            FinishQuizHandler finish)
+            FinishSessionHandler finish)
         {
             _start = start ?? throw new ArgumentNullException(nameof(start));
             _answer = answer ?? throw new ArgumentNullException(nameof(answer));
@@ -31,7 +31,7 @@ namespace QuizBattle.Application.Services
             int? difficulty = null,
             CancellationToken ct = default)
         {
-            var cmd = new StartQuizCommand(questionCount, category, difficulty);
+            var cmd = new StartSessionCommand(questionCount, category, difficulty);
             return _start.Handle(cmd, ct);
         }
 
@@ -45,10 +45,11 @@ namespace QuizBattle.Application.Services
             return _answer.Handle(cmd, ct);
         }
 
-        public Task<FinishQuizResult> FinishAsync(Guid sessionId, CancellationToken ct = default)
+        public Task<FinishSessionResult> FinishAsync(Guid sessionId, CancellationToken ct = default)
         {
-            var cmd = new FinishQuizCommand(sessionId);
-            return _finish.Handle(cmd, ct);
+            var cmd = new FinishSessionCommand(sessionId);
+            return _finish.Handle(cmd, ct)
+                .ContinueWith(task => (FinishSessionResult)task.Result, ct);
         }
     }
 }
