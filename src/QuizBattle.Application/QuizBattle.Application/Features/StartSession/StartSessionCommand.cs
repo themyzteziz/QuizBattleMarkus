@@ -9,8 +9,15 @@ namespace QuizBattle.Application.Features.StartSession
 {
     public sealed record StartSessionCommand
      {
-        public int QuestionCount { get; init; }
-        public string? Category { get; init; }
-        public int? Difficulty { get; init; }
+        public StartSessionCommand(int questionCount, string? category, int? difficulty)
+        {
+            QuestionCount = questionCount;
+            Category = category;
+            Difficulty = difficulty;
+        }
+
+        public int QuestionCount { get; }
+        public string? Category { get; }
+        public int? Difficulty { get; }
     }
 }

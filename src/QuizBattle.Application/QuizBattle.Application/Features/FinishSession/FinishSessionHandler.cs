@@ -8,5 +8,9 @@ namespace QuizBattle.Application.Features.FinishSession
 {
     public class FinishSessionHandler
     {
+        internal async Task<object> Handle(FinishSessionCommand cmd, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,5 +8,9 @@ namespace QuizBattle.Application.Features.StartSession
 {
     public class StartSessionHandler
     {
+        internal async Task<StartSessionResult> Handle(StartSessionCommand cmd, CancellationToken ct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

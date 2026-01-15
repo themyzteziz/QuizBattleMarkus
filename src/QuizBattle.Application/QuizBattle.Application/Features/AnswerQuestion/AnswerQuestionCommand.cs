@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace QuizBattle.Application.Features.AnswerQuestion
 {
-    public class AnswerQuestionCommand
+    public sealed record AnswerQuestionCommand
     {
+        public AnswerQuestionCommand(Guid sessionId, string questionCode, string selectedChoiceCode)
+        {
+            SessionId = sessionId;
+            QuestionCode = questionCode;
+            SelectedChoiceCode = selectedChoiceCode;
+        }
+
+        public Guid SessionId { get; init; }
+        public string QuestionCode { get; init; }
+        public string SelectedChoiceCode { get; init; }
     }
 }
