@@ -11,12 +11,12 @@ namespace QuizBattle.Application.Services
     /// </summary>
     public sealed class SessionService : ISessionService
     {
-        private readonly StartQuizHandler _start;
+        private readonly StartSessionHandler _start;
         private readonly AnswerQuestionHandler _answer;
         private readonly FinishQuizHandler _finish;
 
         public SessionService(
-            StartQuizHandler start,
+            StartSessionHandler start,
             AnswerQuestionHandler answer,
             FinishQuizHandler finish)
         {
@@ -25,7 +25,7 @@ namespace QuizBattle.Application.Services
             _finish = finish ?? throw new ArgumentNullException(nameof(finish));
         }
 
-        public Task<StartQuizResult> StartAsync(
+        public Task<StartSessionResult> StartAsync(
             int questionCount,
             string? category = null,
             int? difficulty = null,
