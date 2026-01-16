@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizBattle.Application.Features.AnswerQuestion
+namespace QuizBattle.Application.Features.AnswerQuestion;
+
+public sealed record AnswerQuestionResult
 {
-    public class AnswerQuestionResult
-    {
-    }
+    public bool IsCorrect { get; init; }
+
 }
+

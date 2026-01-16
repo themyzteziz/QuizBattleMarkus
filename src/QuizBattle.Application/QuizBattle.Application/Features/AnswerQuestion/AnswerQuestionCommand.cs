@@ -18,5 +18,6 @@ namespace QuizBattle.Application.Features.AnswerQuestion
         public Guid SessionId { get; init; }
         public string QuestionCode { get; init; }
         public string SelectedChoiceCode { get; init; }
+        public object QuestionId { get; internal set; }
     }
 }

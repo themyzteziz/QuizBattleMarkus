@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace QuizBattle.Application.Features.FinishSession
 {
-    public class FinishSessionResult
+    public sealed record FinishSessionResult
     {
+        public int TotalScore { get; init; }
+        public int CorrectAnswers { get; init; }
+        public int TotalQuestions { get; init; }
     }
 }
